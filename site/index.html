@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="antinode-brand" content="{{BRAND_VERSION}}">
+<meta http-equiv="Content-Security-Policy" content="{{CSP}}">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="dark">
+<title>antinode — medical technology research</title>
+<meta name="description" content="antinode is a medical technology research organisation. Investors, suppliers and research partners can contact us for more information.">
+<link rel="canonical" href="{{SITE_URL}}/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="antinode">
+<meta property="og:title" content="antinode — medical technology research">
+<meta property="og:description" content="A medical technology research organisation. Contact us for more information.">
+<meta property="og:url" content="{{SITE_URL}}/">
+<meta property="og:image" content="{{SITE_URL}}/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The antinode logo on a graphite background">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "antinode",
+  "legalName": "Antinode Pty Ltd",
+  "url": "{{SITE_URL}}/",
+  "logo": "{{SITE_URL}}/assets/img/icon-512.png",
+  "description": "A medical technology research organisation."
+}
+</script>
+
+<link rel="preload" href="/assets/brand/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/brand/antinode.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="home" aria-label="antinode home"><span class="logo" data-antinode-logo="lockup"></span></a>
+    <nav aria-label="Main">
+      <a href="#work-with-us">Work with us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+    <span class="eyebrow accent">Medical technology research</span>
+    <h1>Medical technology research, held to clinical standards.</h1>
+    <p class="lede">antinode is a medical technology research organisation. The detail of our work is confidential — investors, suppliers and research partners can contact us to learn more.</p>
+    <div class="actions">
+      <a class="btn" href="#contact">Contact us</a>
+      <!-- dataroom -->
+      <a class="btn ghost" href="{{DATAROOM_URL}}" rel="noopener" target="_blank">Investor data room<span class="visually-hidden"> (opens in a new tab)</span></a>
+      <!-- /dataroom -->
+    </div>
+    </div>
+  </section>
+
+  <figure class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1200 220" preserveAspectRatio="none" data-wave></svg>
+  </figure>
+
+  <section class="band" id="work-with-us" aria-labelledby="work-title">
+    <div class="wrap">
+    <span class="eyebrow">Work with us</span>
+    <h2 id="work-title">We are building partnerships with investors, suppliers and researchers.</h2>
+    <div class="cards">
+      <article class="card">
+        <span class="eyebrow">01 · Investors</span>
+        <h3>Invest in early-stage medical technology</h3>
+        <p>We share our technology, programme and plans with investors under a confidentiality agreement. Contact us to request access to our data room.</p>
+      </article>
+      <article class="card">
+        <span class="eyebrow">02 · Suppliers</span>
+        <h3>Supply components and manufacturing</h3>
+        <p>We source precision components, materials and manufacturing services. If you supply the medical device industry, tell us what you make.</p>
+      </article>
+      <article class="card">
+        <span class="eyebrow">03 · Research partners</span>
+        <h3>Collaborate on research</h3>
+        <p>We work with universities, hospitals and research groups. Get in touch to discuss a collaboration.</p>
+      </article>
+    </div>
+    </div>
+  </section>
+
+  <section class="band brief" aria-labelledby="brief-title">
+    <div class="wrap brief-inner">
+      <div>
+        <span class="eyebrow">Why this page is brief</span>
+        <h2 id="brief-title">We discuss our work one-to-one, under confidentiality.</h2>
+      </div>
+      <p>Our technology is in development and its details are not public. Tell us who you are and what you would like to know, and we will arrange the right conversation.</p>
+    </div>
+  </section>
+
+  <section class="band" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact">
+    <div class="contact-intro">
+      <span class="eyebrow accent">Contact</span>
+      <h2 id="contact-title">Tell us who you are and we will be in touch.</h2>
+      <p>Messages go directly to the founding team. Include your organisation and what you would like to discuss.</p>
+      <!-- dataroom -->
+      <p class="dataroom-note">Investor with data room access? <a href="{{DATAROOM_URL}}" rel="noopener" target="_blank">Open the data room<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+      <!-- /dataroom -->
+    </div>
+
+    <form class="contact-form" action="{{CONTACT_FORM_ENDPOINT}}" method="POST" data-contact-form>
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required maxlength="120">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required maxlength="200">
+      </div>
+      <div class="field">
+        <label for="organisation">Organisation</label>
+        <input id="organisation" name="organisation" type="text" autocomplete="organization" maxlength="200">
+      </div>
+      <div class="field">
+        <label for="enquiry">I am contacting you as</label>
+        <div class="select">
+        <select id="enquiry" name="enquiry" required>
+          <option value="" selected disabled>Choose one</option>
+          <option>Investor</option>
+          <option>Supplier or manufacturer</option>
+          <option>Research or clinical partner</option>
+          <option>Other</option>
+        </select>
+        </div>
+      </div>
+      <div class="field full">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required maxlength="5000"></textarea>
+      </div>
+      <!-- Spam trap: people never see or fill this field. -->
+      <div class="trap" aria-hidden="true">
+        <label for="hp-field">Leave this empty</label>
+        <input id="hp-field" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <input type="hidden" name="_subject" value="antinode.bio enquiry">
+      <div class="field full submit-row">
+        <button class="btn" type="submit">Send message</button>
+        <p class="meta privacy">We use these details only to reply to you.</p>
+      </div>
+      <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+    </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© {{YEAR}} Antinode Pty Ltd</span>
+    <span>Medical technology research · antinode.bio</span>
+  </div>
+</footer>
+
+<script src="/assets/brand/antinode.js"></script>
+<script src="/assets/site.js"></script>
+</body>
+</html>

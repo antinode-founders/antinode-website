@@ -1,0 +1,76 @@
+# Build, test and deploy antinode.bio to GitHub Pages.
+#   pull request → build + validate + browser tests (no deploy)
+#   push to main → the same, then deploy
+# Configuration: repository variables CONTACT_FORM_ENDPOINT (required) and
+# DATAROOM_URL (optional). See README.md.
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Build site
+        env:
+          CONTACT_FORM_ENDPOINT: ${{ vars.CONTACT_FORM_ENDPOINT }}
+          DATAROOM_URL: ${{ vars.DATAROOM_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: python3 scripts/build.py
+
+      - run: npm ci
+
+      - name: Validate HTML
+        run: npm run validate
+
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser tests (phone, tablet, desktop)
+        run: npx playwright test --trace off
+        env:
+          CI: "true"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,9 @@
+{
+  "name": "antinode",
+  "short_name": "antinode",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "display": "browser"
+}

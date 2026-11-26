@@ -1,0 +1,80 @@
+/* Page layout for antinode.bio. Colours come only from brand roles
+   (var(--bg) --surface --ink --muted --rule --accent …) — never hex values.
+   Brand components live in /assets/brand/antinode.css. */
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+main { flex: 1 0 auto; }
+:target, section[id] { scroll-margin-top: 76px; }
+
+.skip-link {
+  position: absolute; left: 16px; top: -48px; z-index: 20; padding: 10px 14px;
+  background: var(--accent); color: var(--on-accent); border-radius: 3px; text-decoration: none;
+}
+.skip-link:focus { top: 12px; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* header */
+.site-header .home { display: inline-flex; color: inherit; }
+
+/* one screen: intro + contact side by side on wide screens */
+main.wrap {
+  width: 100%; display: grid; align-content: center; align-items: center;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 32px clamp(32px, 6vw, 96px);
+  padding-top: clamp(28px, 6vh, 72px); padding-bottom: clamp(28px, 6vh, 72px);
+}
+@media (max-width: 860px) { main.wrap { grid-template-columns: minmax(0, 1fr); align-content: start; } }
+
+.intro h1 { margin-bottom: 1.2rem; }
+.intro h1 span { display: block; }
+@media (min-width: 861px) {
+  .intro h1 { font-size: clamp(2.2rem, 3.4vw, 3.2rem); }
+  .intro h1 span { white-space: nowrap; }
+}
+.intro .lede { color: var(--muted); margin: 0; }
+
+/* standing wave */
+.wave { margin: clamp(24px, 5vh, 48px) 0 0; height: clamp(72px, 15vh, 150px); }
+.wave svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.wave path { fill: none; stroke: var(--rule); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.wave path.envelope { stroke: var(--accent); stroke-width: 1.5; }
+.wave path.live { stroke: var(--muted); stroke-width: 1.25; }
+.wave path.axis { stroke: var(--muted); stroke-dasharray: 2 6; }
+
+/* contact */
+.contact { background: var(--surface); border-radius: 3px; padding: clamp(20px, 3vw, 32px); }
+.contact-form { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.field.full, .form-status { grid-column: 1 / -1; }
+.field label {
+  font: 400 11px/1.4 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.field input, .field textarea {
+  width: 100%; font: 400 16px/1.4 var(--font-display); color: var(--ink);
+  background: var(--bg); border: 1px solid var(--rule); border-radius: 3px; padding: 11px 13px;
+  appearance: none; -webkit-appearance: none;
+}
+.field textarea { resize: vertical; min-height: 8rem; }
+.field input:hover, .field textarea:hover { border-color: var(--muted); }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.field input:user-invalid, .field textarea:user-invalid { border-color: var(--secondary); }
+
+.submit-row { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.submit-row .btn { padding: 13px 22px; }
+.submit-row .btn[disabled] { opacity: .6; cursor: progress; }
+.privacy { margin: 0; }
+.trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+.form-status { margin: 0; color: var(--muted); }
+.form-status:empty { display: none; }
+.form-status[data-state="ok"] { color: var(--accent); }
+.form-status[data-state="error"] { color: var(--secondary); }
+.contact-form.sent .field { display: none; }
+
+/* footer */
+.site-footer { margin-top: 0; padding: 16px 0 20px; }

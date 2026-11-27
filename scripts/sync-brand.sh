@@ -14,6 +14,14 @@ cp "$web/antinode.css" "$web/antinode.js" "$dst/assets/brand/"
 cp "$web"/fonts/*.woff2 "$dst/assets/brand/fonts/"
 cp "$exp/favicon.svg" "$exp/favicon.ico" "$dst/"
 cp "$exp/antinode-app-icon-180.png" "$dst/apple-touch-icon.png"
+# PNG favicons cut from the .ico (Safari prefers PNG). Uses the brand repo's Python env (has Pillow).
+uv run -q --project "$src" python - "$dst" <<'PY'
+import sys
+from PIL import Image
+for s in (32, 48):
+    im = Image.open(f"{sys.argv[1]}/favicon.ico"); im.size = (s, s)
+    im.convert("RGBA").save(f"{sys.argv[1]}/favicon-{s}.png")
+PY
 cp "$exp/antinode-app-icon-512.png" "$dst/assets/img/icon-512.png"
 sed -n 's/^version *= *"\(.*\)"/\1/p' "$src/brand/brand.toml" | head -1 > "$dst/assets/brand/VERSION"
 echo "brand $(cat "$dst/assets/brand/VERSION") synced from $src"
